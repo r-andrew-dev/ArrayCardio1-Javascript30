@@ -29,27 +29,31 @@
 
     const people = ['Beck, Glenn', 'Becker, Carl', 'Beckett, Samuel', 'Beddoes, Mick', 'Beecher, Henry', 'Beethoven, Ludwig', 'Begin, Menachem', 'Belloc, Hilaire', 'Bellow, Saul', 'Benchley, Robert', 'Benenson, Peter', 'Ben-Gurion, David', 'Benjamin, Walter', 'Benn, Tony', 'Bennington, Chester', 'Benson, Leana', 'Bent, Silas', 'Bentsen, Lloyd', 'Berger, Ric', 'Bergman, Ingmar', 'Berio, Luciano', 'Berle, Milton', 'Berlin, Irving', 'Berne, Eric', 'Bernhard, Sandra', 'Berra, Yogi', 'Berry, Halle', 'Berry, Wendell', 'Bethea, Erin', 'Bevan, Aneurin', 'Bevel, Ken', 'Biden, Joseph', 'Bierce, Ambrose', 'Biko, Steve', 'Billings, Josh', 'Biondo, Frank', 'Birrell, Augustine', 'Black, Elk', 'Blair, Robert', 'Blair, Tony', 'Blake, William'];
 
-   let old = inventors.filter(el => el.year > 1500 && el.year < 1599)
-   console.log(old)
+   let fifteen = inventors.filter(el => el.year >= 1500 && el.year <= 1599)
+   console.table(fifteen)
 
     // 1. Filter the list of inventors for those who were born in the 1500's
 
     // Array.prototype.map()
     // 2. Give us an array of the inventors first and last names
 
- let names = inventors.map(el => {
-      return `${el.first} ${el.last}`
-    })
-  console.log(names)
+ let fullNames = inventors.map(el => `${el.first} ${el.last}`);
+  console.log(fullNames)
 
     // Array.prototype.sort()
     // 3. Sort the inventors by birthdate, oldest to youngest
 
-let birthdates = inventors.sort((el,b) => (el.year < b.year) ? -1 : 1)
-console.log(birthdates)
+let ordered = inventors.sort((a,b) => (a.year < b.year) ? -1 : 1)
+console.table(ordered)
 
     // Array.prototype.reduce()
     // 4. How many years did all the inventors live all together?
+
+const totalYears = inventors.reduce((total, inventor) => {
+  return total + (inventor.passed - inventor.year);
+}, 0);
+
+console.log(totalYears)
 
 
 
